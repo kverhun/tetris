@@ -8,7 +8,7 @@ State::State()
     _score = 0;
     _figureX = -1;
     _figureY = -1;
-    _figure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
+    _figure = new Figure(FigurePrimitive(rand()%6), Color(rand()%4));
     _nextFigure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
 }
 
@@ -30,11 +30,11 @@ bool State::Move()
     {
         _field->AddFigure(_figure, _figureX, _figureY);
         _figure = _nextFigure;
-        _nextFigure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
-        if (!isDropAllowed())
-            return false;
+        _nextFigure = new Figure(FigurePrimitive(rand()%6), Color(rand()%4));
         _figureX = _field->GetWidth() / 2;
         _figureY = 0;
+        if (!isDropAllowed())
+            return false;
         _score += _field->Score();
     }
     return true;
@@ -48,18 +48,32 @@ void State::MoveLeft()
 
 void State::MoveRight()
 {
-    if (isMoveRigthAllowed())
+    if (isMoveRightAllowed())
         ++_figureX;
 }
 
 void State::Rotate()
 {
-    if (isRotationAllowed())
-        _figure->Rotate();
+    _figure->RotateCCW();
+    for (auto i = 0; i < _figure->GetHeight(); ++i)
+        for (auto j = 0; j < _figure->GetWidth(); ++j)
+            if (_figure->IsFilled(i,j) && _field->IsFilled(_figureY+i, _figureX+j)
+                    || _figureX+_figure->GetWidth() >= _field->GetWidth()
+                    || _figureY+_figure->GetHeight() >= _field->GetHeigth())
+            {
+                _figure->RotateCW();
+                return;
+                //return false;
+            }
 }
 
 bool State::isDropAllowed()
 {
+    for (auto i = 0; i < _figure->GetHeight(); ++i)
+        for (auto j = 0; j < _figure->GetWidth(); ++j)
+            if (_figure->IsFilled(i,j) && _field->IsFilled(_figureY+i, _figureX+j))
+                return false;
+
     return true;
 }
 
@@ -78,16 +92,50 @@ bool State::isMoveEnded()
 
 bool State::isMoveLeftAllowed()
 {
+    // field bounds
+    if (_figureX <= 0)
+        return false;
+
+    // other elements
+    for (auto i = 0; i < _figure->GetHeight(); ++i)
+    {
+        int j = 0;
+        while (! _figure->IsFilled(i,j)) ++j;
+        if (_field->IsFilled(_figureY+i, _figureX+j-1))
+            return false;
+    }
+
+
     return true;
 }
 
-bool State::isMoveRigthAllowed()
+bool State::isMoveRightAllowed()
 {
+    // field bounds
+    if (_figureX + _figure->GetWidth() >= _field->GetWidth())
+        return false;
+
+    // other elements
+    for (auto i = 0; i < _figure->GetHeight(); ++i)
+    {
+        int j = _figure->GetWidth()-1;
+        while (! _figure->IsFilled(i,j)) --j;
+        if (_field->IsFilled(_figureY+i, _figureX+j+1))
+            return false;
+    }
     return true;
 }
 
 bool State::isRotationAllowed()
 {
+    _figure->RotateCCW();
+    for (auto i = 0; i < _figure->GetHeight(); ++i)
+        for (auto j = 0; j < _figure->GetWidth(); ++j)
+            if (_figure->IsFilled(i,j) && _field->IsFilled(_figureY+i, _figureX+j))
+            {
+                _figure->RotateCW();
+                return false;
+            }
     return true;
 }
 

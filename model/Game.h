@@ -15,10 +15,12 @@ public:
     void Rotate();
     bool MakeMove();
 
+    bool IsRunning() const {return _isRunning;}
+
     const State* GetState() {return _state;}
 private:
 
-
+    bool _isRunning;
     State* _state;
 
 };

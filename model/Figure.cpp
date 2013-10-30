@@ -19,6 +19,14 @@ Figure::Figure(FigurePrimitive primitive, Color color)
         _width = 3;
         _height = 2;
         break;
+    case FigurePrimitive::el_r:
+        _width = 3;
+        _height = 2;
+        break;
+    case FigurePrimitive::el_l:
+        _width = 3;
+        _height = 2;
+        break;
     }
 
     _matrix = vector<vector<FieldElement>>(_height);
@@ -52,14 +60,21 @@ Figure::Figure(FigurePrimitive primitive, Color color)
         _matrix[1][1].Fill();
         _matrix[1][0].Fill();
         break;
+    case FigurePrimitive::el_r:
+        _matrix[0][2].Fill();
+        _matrix[1][0].Fill();
+        _matrix[1][1].Fill();
+        _matrix[1][2].Fill();
+        break;
+    case FigurePrimitive::el_l:
+        _matrix[0][0].Fill();
+        _matrix[1][0].Fill();
+        _matrix[1][1].Fill();
+        _matrix[1][2].Fill();
+        break;
     default:
         break;
     }
-}
-
-void Figure::Rotate()
-{
-
 }
 
 FieldElement Figure::GetElement(int i, int j)
@@ -90,3 +105,36 @@ Color Figure::GetColor(int i, int j)
         return Color::none;
     return _matrix[i][j].GetColor();
 }
+
+void Figure::RotateCCW()
+{
+    int newHeight = _width;
+    int newWidth = _height;
+    vector<vector<FieldElement>> newMatrix = vector<vector<FieldElement>>(newHeight);
+    for (auto i = 0; i < newHeight; ++i)
+        newMatrix[i] = vector<FieldElement>(newWidth);
+    for (auto i = 0; i < newHeight; ++i)
+        for (auto j = 0; j < newWidth; ++j)
+            newMatrix[i][j] = _matrix[j][_width-i-1];
+    _matrix = newMatrix;
+    _height = newHeight;
+    _width = newWidth;
+}
+
+void Figure::RotateCW()
+{
+    int newHeight = _width;
+    int newWidth = _height;
+    vector<vector<FieldElement>> newMatrix = vector<vector<FieldElement>>(newHeight);
+    for (auto i = 0; i < newHeight; ++i)
+        newMatrix[i] = vector<FieldElement>(newWidth);
+    for (auto i = 0; i < newHeight; ++i)
+        for (auto j = 0; j < newWidth; ++j)
+            newMatrix[i][j] = _matrix[_height-j-1][i];
+    _matrix = newMatrix;
+    _height = newHeight;
+    _width = newWidth;
+}
+
+
+

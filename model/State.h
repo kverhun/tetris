@@ -25,7 +25,7 @@ private:
     bool isMoveEnded();
     bool isRotationAllowed();
     bool isMoveLeftAllowed();
-    bool isMoveRigthAllowed();
+    bool isMoveRightAllowed();
     bool isDropAllowed();
 
     Figure* _figure;

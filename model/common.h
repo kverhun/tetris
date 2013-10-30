@@ -18,7 +18,9 @@ enum FigurePrimitive
     box,
     line,
     slide_r,
-    slide_l
+    slide_l,
+    el_r,
+    el_l
 };
 
 

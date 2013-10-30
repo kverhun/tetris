@@ -14,7 +14,9 @@ public:
     Figure (const Figure&);
     bool IsFilled(int i, int j);
     Color GetColor (int i, int j);
-    void Rotate();
+
+    void RotateCW();
+    void RotateCCW();
 
     int GetWidth() const {return _width;}
     int GetHeight() const {return _height;}

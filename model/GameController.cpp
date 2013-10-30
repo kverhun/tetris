@@ -53,11 +53,17 @@ void GameController::onMoveLeft()
 
 void GameController::onMove()
 {
-    _game->MakeMove();
+    if (!_game->MakeMove())
+    {
+        this->onEnd();
+    }
     emit(onStateChanged());
 }
 void GameController::onEnd()
 {
     _game->End();
     emit(onStateChanged());
+    QMessageBox box;
+    box.setText("Game over");
+    box.exec();
 }
