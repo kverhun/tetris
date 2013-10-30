@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+
 #include "view/iview.h"
 #include "model/GameController.h"
 

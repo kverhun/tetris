@@ -25,6 +25,7 @@ public:
 
     virtual void DisplayScore(int val) = 0;
     virtual void DisplayLevel(int lvl) = 0;
+    virtual ~IView(){}
 
 };
 

@@ -3,6 +3,7 @@
 #include <QMessageBox>
 
 
+
 Presenter::Presenter(IView *view)
 {
     this->view = view;
@@ -40,6 +41,8 @@ void Presenter::StateChange()
 
 void Presenter::EndGame()
 {
+
+
     QMessageBox box;
     box.setText("Game over");
     box.exec();
