@@ -4,7 +4,7 @@
 class IView
 {
 public:
-
+    virtual void onNewGame() = 0;
 
 };
 

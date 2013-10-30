@@ -15,12 +15,27 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     presenter/presenter.cpp \
-    model/GameController.cpp
+    model/GameController.cpp \
+    model/Figure.cpp \
+    model/Field.cpp \
+    model/State.cpp \
+    model/Game.cpp \
+    model/LayoutState.cpp \
+    view/tetriswidget.cpp
 
 HEADERS  += mainwindow.h \
     view/tetriswidget.h \
     presenter/presenter.h \
     view/iview.h \
-    model/GameController.h
+    model/GameController.h \
+    model/FieldElement.h \
+    model/common.h \
+    model/Figure.h \
+    model/Field.h \
+    model/State.h \
+    model/Game.h \
+    model/LayoutState.h
 
 FORMS    += mainwindow.ui
+
+QMAKE_CXXFLAGS += -std=c++11
