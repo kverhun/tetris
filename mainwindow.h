@@ -24,9 +24,16 @@ private:
     Ui::MainWindow *ui;
     TetrisWidget* tw;
 
+protected:
+    bool eventFilter(QObject *, QEvent *);
+    void keyPressEvent(QKeyEvent *);
 signals:
     void onNewGame();
-
+    void onRotate();
+    void onToLeft();
+    void onToRight();
+    void onSpeedup();
+    void onEndGame();
 
 private slots:
     void on_newGameButton_clicked();
