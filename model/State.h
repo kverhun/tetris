@@ -20,8 +20,13 @@ public:
     bool IsFilled (int i, int j) const;
     Color GetColor(int i, int j) const;
 
+    void SetLevel(int lvl) {_level = lvl;}
+    int GetLevel () const {return _level;}
+    int GetScore () const {return _score;}
+
+    ~State() {delete _figure; delete _field; delete _nextFigure;}
 private:
-    int GetScore () {return _score;}
+
     bool isMoveEnded();
     bool isRotationAllowed();
     bool isMoveLeftAllowed();
@@ -37,6 +42,8 @@ private:
     Figure* _nextFigure;
 
     int _score;
+    void addScore(int lines);
+    int _level;
 };
 
 #endif // STATE_H

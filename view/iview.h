@@ -13,10 +13,19 @@ public:
     virtual void onSpeedup() = 0;
     virtual void onEndGame() = 0;
 
+    virtual void onPause() = 0;
+    virtual void onResume() = 0;
+
+    virtual void onExit() = 0;
+
     virtual void onStateUpdate(const State*) = 0;
 
     // temp
     virtual void onMakeMove() = 0;
+
+    virtual void DisplayScore(int val) = 0;
+    virtual void DisplayLevel(int lvl) = 0;
+
 };
 
 #endif // IVIEW_H

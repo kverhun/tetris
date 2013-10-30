@@ -78,6 +78,33 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
 void MainWindow::onStateUpdate(const State * st)
 {
     this->tw->UpdateState(st);
+    this->DisplayScore(st->GetScore());
+    this->DisplayLevel(st->GetLevel());
     this->tw->repaint();
 }
 
+
+void MainWindow::on_pauseBtn_clicked()
+{
+    emit(onPause());
+}
+
+void MainWindow::on_endGameBtn_clicked()
+{
+    emit(onEndGame());
+}
+
+void MainWindow::on_exitBtn_clicked()
+{
+    emit(onExit());
+}
+
+void MainWindow::DisplayScore(int val)
+{
+    this->ui->scoreLabel->setText(QString::number(val));
+}
+
+void MainWindow::DisplayLevel(int lvl)
+{
+    this->ui->levelLable->setText(QString::number(lvl));
+}

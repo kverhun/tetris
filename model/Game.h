@@ -18,6 +18,10 @@ public:
     bool IsRunning() const {return _isRunning;}
 
     const State* GetState() {return _state;}
+    int GetScore () const;
+    void SetLevel(int lvl);
+
+    ~Game() {delete _state;}
 private:
 
     bool _isRunning;

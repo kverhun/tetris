@@ -19,7 +19,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-
+    void DisplayScore(int val);
+    void DisplayLevel(int lvl);
 private:
     Ui::MainWindow *ui;
     TetrisWidget* tw;
@@ -36,11 +37,17 @@ signals:
     void onEndGame();
     //void onStateUpdate(State*);
     void onMakeMove();
+    void onPause();
+    void onResume();
+    void onExit();
 
 private slots:
     void on_newGameButton_clicked();
 
     void onStateUpdate(const State *);
+    void on_pauseBtn_clicked();
+    void on_endGameBtn_clicked();
+    void on_exitBtn_clicked();
 };
 
 #endif // MAINWINDOW_H

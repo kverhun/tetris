@@ -42,3 +42,8 @@ void GameTimer::Pause()
 {
     _timer->stop();
 }
+
+void GameTimer::SetLevel(int lvl)
+{
+    _level = lvl;
+}

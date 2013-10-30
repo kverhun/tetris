@@ -2,12 +2,16 @@
 
 #include <stdlib.h>
 
+#include <ctime>
+
 State::State()
 {
     _field = new Field();
     _score = 0;
-    _figureX = -1;
+    _level = 1;
+    _figureX = _field->GetWidth()/2;
     _figureY = -1;
+    srand(time(nullptr));
     _figure = new Figure(FigurePrimitive(rand()%6), Color(rand()%4));
     _nextFigure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
 }
@@ -15,7 +19,7 @@ State::State()
 void State::Start()
 {
     _figureX = _field->GetWidth()/2;
-    _figureY = 0;
+    _figureY = -1;
 }
 
 bool State::Move()
@@ -28,16 +32,37 @@ bool State::Move()
     }
     else
     {
+        srand(time(nullptr));
         _field->AddFigure(_figure, _figureX, _figureY);
         _figure = _nextFigure;
         _nextFigure = new Figure(FigurePrimitive(rand()%6), Color(rand()%4));
         _figureX = _field->GetWidth() / 2;
-        _figureY = 0;
+        _figureY = -1;
         if (!isDropAllowed())
             return false;
-        _score += _field->Score();
+        this->addScore( _field -> Score());
     }
     return true;
+}
+
+void State::addScore(int lines)
+{
+    switch (lines) {
+    case 1:
+        _score += 40*(_level+1);
+        break;
+    case 2:
+        _score += 100*(_level+1);
+        break;
+    case 3:
+        _score += 300*(_level+1);
+        break;
+    case 4:
+        _score += 1200*(_level+1);
+        break;
+    default:
+        break;
+    }
 }
 
 void State::MoveLeft()
@@ -104,8 +129,6 @@ bool State::isMoveLeftAllowed()
         if (_field->IsFilled(_figureY+i, _figureX+j-1))
             return false;
     }
-
-
     return true;
 }
 

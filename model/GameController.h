@@ -12,14 +12,23 @@ class GameController : public QObject
 public:
     GameController();
     const State* GetState() {return _game->GetState();}
-    void newGame();
+    int GetScore() {return _score;}
+    void AddScore(int val) {_score += val;}
+    ~GameController() {delete _game; delete _gameTimer;}
 private:
 
     Game* _game;
     GameTimer* _gameTimer;
+
+    bool _isRunning;
+    int _score;
+
+    void updateLevel();
 signals:
     void onStateChanged();
+    void onGameEnd();
 private slots:
+    void onNewGame();
     void onStart();
     void onEnd();
     void onMove();
@@ -29,6 +38,7 @@ private slots:
     void onSpeedup();
     //void Start();
     void onPause();
+    void onResume();
 };
 
 #endif // GAMECONTROLLER_H

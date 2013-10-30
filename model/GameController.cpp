@@ -4,6 +4,7 @@
 
 GameController::GameController()
 {
+    _isRunning = false;
     _game = new Game();
     _gameTimer = new GameTimer();
     connect(_gameTimer, SIGNAL(onMove()), this, SLOT(onMove()));
@@ -11,15 +12,16 @@ GameController::GameController()
 
 void GameController::onStart()
 {
-    QMessageBox box;
-    box.setText("start");
+    //QMessageBox box;
+    //box.setText("start");
     //box.exec();
+    _isRunning = true;
     _game->Start();
     _gameTimer->Start();
     emit(onStateChanged());
 }
 
-void GameController::newGame()
+void GameController::onNewGame()
 {
     _game = new Game();
     _gameTimer = new GameTimer();
@@ -29,7 +31,22 @@ void GameController::newGame()
 
 void GameController::onPause()
 {
-    _gameTimer->Pause();
+    if (_isRunning)
+    {
+        _isRunning = false;
+        _gameTimer -> Pause();
+    }
+    else
+    {
+        _isRunning = true;
+        _gameTimer -> Start();
+    }
+}
+
+void GameController::onResume()
+{
+    _isRunning = true;
+    _gameTimer->Start();
 }
 
 void GameController::onSpeedup()
@@ -73,14 +90,27 @@ void GameController::onMove()
     {
         this->onEnd();
     }
+    this->updateLevel();
     emit(onStateChanged());
 }
 void GameController::onEnd()
 {
     _game->End();
     _gameTimer->Pause();
-    emit(onStateChanged());
-    QMessageBox box;
-    box.setText("Game over");
-    box.exec();
+    //delete _game;
+    //delete _gameTimer;
+    //_game = nullptr;
+    //_gameTimer = nullptr;
+    emit(onGameEnd());
+    //QMessageBox box;
+    //box.setText("Game over");
+    //box.exec();
+}
+
+void GameController::updateLevel()
+{
+    int score = _game->GetScore();
+    int lvl = score / 2000 + 1;
+    this->_gameTimer->SetLevel(lvl);
+    this->_game->SetLevel(lvl);
 }

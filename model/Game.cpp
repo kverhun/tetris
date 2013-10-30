@@ -39,3 +39,12 @@ void Game::Rotate()
     if (!_isRunning) return;
     _state->Rotate();
 }
+
+int Game::GetScore() const
+{
+    return _state->GetScore();
+}
+void Game::SetLevel(int lvl)
+{
+    _state->SetLevel(lvl);
+}

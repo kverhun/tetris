@@ -15,6 +15,7 @@ public:
     bool IsFilled() const {return _filled;}
     Color GetColor() const {return _color;}
     void SetColor(Color color) {_color = color;}
+    ~FieldElement(){}
 private:
     bool _filled;
     Color _color;

@@ -12,8 +12,10 @@ public:
     GameTimer(int level);
     int GetLevel();
     void IncLevel();
+    void SetLevel(int lvl);
     void Start();
     void Pause();
+    ~GameTimer() {delete _timer;}
 private:
     QTimer* _timer;
     int _level;

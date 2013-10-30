@@ -11,7 +11,7 @@ class Presenter : public QObject
     Q_OBJECT
 public:
     Presenter(IView* view);
-
+    ~Presenter() {delete game; delete view;}
 private:
 
     IView* view;
@@ -19,7 +19,9 @@ private:
 
 private slots:
     void StartGame();
+
     void StateChange();
+    void EndGame();
 
 
 };
