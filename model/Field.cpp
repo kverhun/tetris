@@ -36,6 +36,39 @@ int Field::Score()
         if (full)
         {
         //
+            ++c;
+            for (auto j = 0; j < _width; ++j)
+                _matrix[i][j].Unfill();
+        }
+    }
+    if (c > 0)
+    {
+        int lines = c;
+        for (auto i = 0; i < _height; ++i)
+        {
+            if (lines <= 0)
+                break;
+            bool empty = true;
+            for (auto j = 0; j < _width; ++j)
+            {
+                if (_matrix[_height - i - 1][j].IsFilled())
+                {
+                    empty = false;
+                    break;
+                }
+            }
+            if (empty)
+            {
+                for (auto k = i+1; k < _height; ++k)
+                {
+                    for (auto col = 0; col < _width; ++col)
+                    {
+                        _matrix[_height-1-k+1][col] = _matrix[_height-1-k][col];
+                    }
+                }
+                --i;
+                --lines;
+            }
         }
     }
     return c;
