@@ -8,14 +8,18 @@
 class TetrisWidget : public QWidget
 {
 public:
-    void UpdateState(State* state) {_nextState = state; emit(paintEvent(nullptr));}
+    void UpdateState(const State* state) {_nextState = state; emit(paintEvent(nullptr));}
 protected:
     void paintEvent(QPaintEvent *);
 private:
     void PaintState(const State*);
 
+    void DrawGrid(int hcount, int wcount);
+    void DrawState();
+
+
     State* _currentState;
-    State* _nextState;
+    const State* _nextState;
 };
 
 #endif // TETRISWIDGET_H

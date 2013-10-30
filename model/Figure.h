@@ -12,12 +12,12 @@ class Figure
 public:
     Figure(FigurePrimitive primitive, Color color);
     Figure (const Figure&);
-    bool IsFilled(int i, int j) {return _matrix[i][j].IsFilled();}
-    bool GetColor (int i, int j) {return _matrix[i][j].GetColor();}
+    bool IsFilled(int i, int j);
+    Color GetColor (int i, int j);
     void Rotate();
 
-    int GetWidth() {return _width;}
-    int GetHeight() {return _height;}
+    int GetWidth() const {return _width;}
+    int GetHeight() const {return _height;}
 
     FieldElement GetElement (int i, int j);
 

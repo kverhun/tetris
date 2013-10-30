@@ -5,11 +5,11 @@
 State::State()
 {
     _field = new Field();
-
+    _score = 0;
     _figureX = -1;
     _figureY = -1;
     _figure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
-    _figure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
+    _nextFigure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
 }
 
 void State::Start()
@@ -20,6 +20,7 @@ void State::Start()
 
 bool State::Move()
 {
+    //return true;
     if (!isMoveEnded())
     {
         ++_figureY;
@@ -45,7 +46,7 @@ void State::MoveLeft()
         --_figureX;
 }
 
-void State::MoveRigth()
+void State::MoveRight()
 {
     if (isMoveRigthAllowed())
         ++_figureX;
@@ -64,7 +65,15 @@ bool State::isDropAllowed()
 
 bool State::isMoveEnded()
 {
-    return true;
+    for (auto j = 0; j < _figure->GetWidth(); ++j)
+    {
+        int i = 0;
+        while (! _figure->IsFilled(_figure->GetHeight() - 1 - i,j)) ++i;
+        if (_field->IsFilled(_figureY+_figure->GetHeight()-i, _figureX+j)
+                || (_figureY+_figure->GetHeight()-i > _field->GetHeigth()-1 ))
+            return true;
+    }
+    return false;
 }
 
 bool State::isMoveLeftAllowed()
@@ -81,3 +90,24 @@ bool State::isRotationAllowed()
 {
     return true;
 }
+
+bool State::IsFilled(int i, int j) const
+{
+    if (_field->IsFilled(i,j))
+        return true;
+    if (_figure->IsFilled(i-_figureY, j - _figureX))
+        return true;
+    return false;
+}
+
+Color State::GetColor(int i, int j) const
+{
+    if (_field->IsFilled(i,j))
+        return _field->GetColor(i,j);
+    if (_figure->IsFilled(i-_figureY, j - _figureX))
+        return _figure->GetColor(i-_figureY,j-_figureX);
+    return none;
+}
+
+
+

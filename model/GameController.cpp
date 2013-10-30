@@ -11,15 +11,17 @@ void GameController::onStart()
 {
     QMessageBox box;
     box.setText("start");
-    box.exec();
+    //box.exec();
     _game->Start();
+    emit(onStateChanged());
 }
 
 void GameController::onSpeedup()
 {
     QMessageBox box;
     box.setText("speedUp");
-    box.exec();
+    //box.exec();
+    emit(onStateChanged());
 }
 
 void GameController::onRotate()
@@ -27,33 +29,35 @@ void GameController::onRotate()
     _game->Rotate();
     QMessageBox box;
     box.setText("rotate");
-    box.exec();
+    //box.exec();
+    emit(onStateChanged());
 }
 
 void GameController::onMoveRight()
 {
     QMessageBox box;
     box.setText("right");
-    box.exec();
-    _game->MoveRigth();
+    //box.exec();
+    _game->MoveRight();
+    emit(onStateChanged());
 }
 
 void GameController::onMoveLeft()
 {
     QMessageBox box;
     box.setText("left");
-    box.exec();
+    //box.exec();
     _game->MoveLeft();
+    emit(onStateChanged());
 }
 
 void GameController::onMove()
 {
-    if (!_game->MakeMove())
-    {
-        this->onEnd();
-    }
+    _game->MakeMove();
+    emit(onStateChanged());
 }
 void GameController::onEnd()
 {
     _game->End();
+    emit(onStateChanged());
 }

@@ -13,7 +13,8 @@ void Field::AddFigure(Figure* figure, int x, int y)
     for (auto i = 0; i < figure->GetHeight(); ++i)
         for (auto j = 0; j < figure->GetWidth(); ++j)
         {
-            _matrix[x+i][y+j] = figure->GetElement(i,j);
+            if (figure->IsFilled(i,j))
+            _matrix[y+i][x+j] = figure->GetElement(i,j);
         }
 }
 
@@ -38,4 +39,18 @@ int Field::Score()
         }
     }
     return c;
+}
+
+bool Field::IsFilled(int i, int j)
+{
+    if (i < 0 || i >= _height || j < 0 || j >= _width)
+        return false;
+    return _matrix[i][j].IsFilled();
+}
+
+Color Field::GetColor(int i, int j)
+{
+    if (i < 0 || i >= _height || j < 0 || j >= _width)
+        return none;
+    return _matrix[i][j].GetColor();
 }

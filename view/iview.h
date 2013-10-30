@@ -1,6 +1,8 @@
 #ifndef IVIEW_H
 #define IVIEW_H
 
+#include "model/State.h"
+
 class IView
 {
 public:
@@ -10,6 +12,11 @@ public:
     virtual void onRotate() = 0;
     virtual void onSpeedup() = 0;
     virtual void onEndGame() = 0;
+
+    virtual void onStateUpdate(const State*) = 0;
+
+    // temp
+    virtual void onMakeMove() = 0;
 };
 
 #endif // IVIEW_H

@@ -10,7 +10,7 @@ public:
     void Start();
     void End();
 
-    void MoveRigth();
+    void MoveRight();
     void MoveLeft();
     void Rotate();
     bool MakeMove();

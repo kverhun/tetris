@@ -76,3 +76,17 @@ Figure::Figure(const Figure & figure)
     this->_width = figure._width;
     this->_matrix = figure._matrix;
 }
+
+bool Figure::IsFilled(int i, int j)
+{
+    if (i < 0 || i >= _height || j < 0 || j >= _width)
+        return false;
+    return _matrix[i][j].IsFilled();
+}
+
+Color Figure::GetColor(int i, int j)
+{
+    if (i < 0 || i >= _height || j < 0 || j >= _width)
+        return Color::none;
+    return _matrix[i][j].GetColor();
+}

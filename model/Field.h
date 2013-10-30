@@ -10,11 +10,11 @@ public:
     Field(int height=30, int width=15);
     void AddFigure (Figure* figure, int x, int y);
 
-    bool IsFilled(int i, int j) {return _matrix[i][j].IsFilled();}
-    Color GetColor(int i, int j) {return _matrix[i][j].GetColor();}
+    bool IsFilled(int i, int j);
+    Color GetColor(int i, int j);
 
-    int GetWidth() {return _width;}
-    int GetHeigth() {return _height;}
+    int GetWidth() const {return _width;}
+    int GetHeigth() const {return _height;}
     // method provides dropping bottom lines
     // rets: count of lines
     int Score();

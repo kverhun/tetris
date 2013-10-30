@@ -34,9 +34,13 @@ signals:
     void onToRight();
     void onSpeedup();
     void onEndGame();
+    //void onStateUpdate(State*);
+    void onMakeMove();
 
 private slots:
     void on_newGameButton_clicked();
+
+    void onStateUpdate(const State *);
 };
 
 #endif // MAINWINDOW_H

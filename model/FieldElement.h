@@ -12,8 +12,8 @@ public:
     void Fill() {_filled = true;}
     void Unfill() {_filled = false;}
 
-    bool IsFilled() {return _filled;}
-    Color GetColor() {return _color;}
+    bool IsFilled() const {return _filled;}
+    Color GetColor() const {return _color;}
     void SetColor(Color color) {_color = color;}
 private:
     bool _filled;

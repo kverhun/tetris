@@ -11,8 +11,15 @@ public:
     void Start();
     bool Move();
     void MoveLeft();
-    void MoveRigth();
+    void MoveRight();
     void Rotate();
+
+    int GetHeight() const {return _field->GetHeigth();}
+    int GetWidth() const {return _field->GetWidth();}
+
+    bool IsFilled (int i, int j) const;
+    Color GetColor(int i, int j) const;
+
 private:
     int GetScore () {return _score;}
     bool isMoveEnded();

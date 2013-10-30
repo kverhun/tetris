@@ -15,6 +15,11 @@ Presenter::Presenter(IView *view)
     connect(qview, SIGNAL(onSpeedup()), this->game, SLOT(onSpeedup()));
     connect(qview, SIGNAL(onEndGame()), this->game, SLOT(onEnd()));
     // connect here
+    connect(game, SIGNAL(onStateChanged()), this, SLOT(StateChange()));
+
+    // temp
+    connect(qview, SIGNAL(onMakeMove()), this->game, SLOT(onMove()));
+
 }
 
 /*
@@ -29,5 +34,11 @@ signals:
 
 void Presenter::StartGame()
 {
+
+}
+
+void Presenter::StateChange()
+{
+    this->view->onStateUpdate(this->game->GetState());
 
 }

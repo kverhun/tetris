@@ -60,7 +60,7 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
     switch (event->key())
     {
     case Qt::Key_Down:
-        emit(onSpeedup());
+        emit(onMakeMove());
         break;
     case Qt::Key_Left:
         emit(onToLeft());
@@ -73,5 +73,11 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
         break;
     }
     //Controller::Instance()->Upd();
+}
+
+void MainWindow::onStateUpdate(const State * st)
+{
+    this->tw->UpdateState(st);
+    this->tw->repaint();
 }
 

@@ -19,6 +19,7 @@ private:
 
 private slots:
     void StartGame();
+    void StateChange();
 
 
 };

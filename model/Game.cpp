@@ -25,9 +25,9 @@ void Game::MoveLeft()
     _state->MoveLeft();
 }
 
-void Game::MoveRigth()
+void Game::MoveRight()
 {
-    _state->MoveRigth();
+    _state->MoveRight();
 }
 
 void Game::Rotate()
