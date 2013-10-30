@@ -34,7 +34,6 @@ signals:
 
 void Presenter::StartGame()
 {
-
 }
 
 void Presenter::StateChange()

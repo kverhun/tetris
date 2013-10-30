@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "Game.h"
+#include "GameTimer.h"
 
 class GameController : public QObject
 {
@@ -11,9 +12,11 @@ class GameController : public QObject
 public:
     GameController();
     const State* GetState() {return _game->GetState();}
+    void newGame();
 private:
 
     Game* _game;
+    GameTimer* _gameTimer;
 signals:
     void onStateChanged();
 private slots:
@@ -24,6 +27,8 @@ private slots:
     void onMoveRight();
     void onRotate();
     void onSpeedup();
+    //void Start();
+    void onPause();
 };
 
 #endif // GAMECONTROLLER_H

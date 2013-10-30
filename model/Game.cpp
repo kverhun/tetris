@@ -13,6 +13,7 @@ void Game::Start()
 void Game::End()
 {
     _isRunning = false;
+
 }
 
 bool Game::MakeMove()

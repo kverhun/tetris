@@ -58,7 +58,7 @@ void State::Rotate()
     for (auto i = 0; i < _figure->GetHeight(); ++i)
         for (auto j = 0; j < _figure->GetWidth(); ++j)
             if (_figure->IsFilled(i,j) && _field->IsFilled(_figureY+i, _figureX+j)
-                    || _figureX+_figure->GetWidth() >= _field->GetWidth()
+                    || _figureX+_figure->GetWidth() > _field->GetWidth()
                     || _figureY+_figure->GetHeight() >= _field->GetHeigth())
             {
                 _figure->RotateCW();

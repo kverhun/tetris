@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     model/State.cpp \
     model/Game.cpp \
     model/LayoutState.cpp \
-    view/tetriswidget.cpp
+    view/tetriswidget.cpp \
+    model/GameTimer.cpp
 
 HEADERS  += mainwindow.h \
     view/tetriswidget.h \
@@ -34,7 +35,8 @@ HEADERS  += mainwindow.h \
     model/Field.h \
     model/State.h \
     model/Game.h \
-    model/LayoutState.h
+    model/LayoutState.h \
+    model/GameTimer.h
 
 FORMS    += mainwindow.ui
 

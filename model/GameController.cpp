@@ -5,6 +5,8 @@
 GameController::GameController()
 {
     _game = new Game();
+    _gameTimer = new GameTimer();
+    connect(_gameTimer, SIGNAL(onMove()), this, SLOT(onMove()));
 }
 
 void GameController::onStart()
@@ -13,7 +15,21 @@ void GameController::onStart()
     box.setText("start");
     //box.exec();
     _game->Start();
+    _gameTimer->Start();
     emit(onStateChanged());
+}
+
+void GameController::newGame()
+{
+    _game = new Game();
+    _gameTimer = new GameTimer();
+    connect(_gameTimer, SIGNAL(onMove()), this, SLOT(onMove()));
+    this->onStart();
+}
+
+void GameController::onPause()
+{
+    _gameTimer->Pause();
 }
 
 void GameController::onSpeedup()
@@ -62,6 +78,7 @@ void GameController::onMove()
 void GameController::onEnd()
 {
     _game->End();
+    _gameTimer->Pause();
     emit(onStateChanged());
     QMessageBox box;
     box.setText("Game over");
