@@ -43,7 +43,7 @@
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>400</y>
+       <y>410</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -118,7 +118,7 @@
        <x>10</x>
        <y>280</y>
        <width>131</width>
-       <height>61</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="title">
@@ -127,7 +127,7 @@
      <widget class="QLabel" name="levelLable">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>60</x>
         <y>20</y>
         <width>46</width>
         <height>21</height>

@@ -2,6 +2,7 @@
 
 #include <QMessageBox>
 
+
 Presenter::Presenter(IView *view)
 {
     this->view = view;

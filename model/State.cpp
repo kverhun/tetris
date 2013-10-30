@@ -12,8 +12,8 @@ State::State()
     _figureX = _field->GetWidth()/2;
     _figureY = -1;
     srand(time(nullptr));
-    _figure = new Figure(FigurePrimitive(rand()%6), Color(rand()%4));
-    _nextFigure = new Figure(FigurePrimitive(rand()%4), Color(rand()%4));
+    _figure = new Figure(FigurePrimitive(rand()%figure_num), Color(1+rand()%color_num));
+    _nextFigure = new Figure(FigurePrimitive(rand()%figure_num), Color(1+rand()%color_num));
 }
 
 void State::Start()
@@ -35,7 +35,7 @@ bool State::Move()
         srand(time(nullptr));
         _field->AddFigure(_figure, _figureX, _figureY);
         _figure = _nextFigure;
-        _nextFigure = new Figure(FigurePrimitive(rand()%6), Color(rand()%4));
+        _nextFigure = new Figure(FigurePrimitive(rand()%figure_num), Color(1+rand()%color_num));
         _figureX = _field->GetWidth() / 2;
         _figureY = -1;
         if (!isDropAllowed())

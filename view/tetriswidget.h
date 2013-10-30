@@ -17,6 +17,7 @@ private:
     void DrawGrid(int hcount, int wcount);
     void DrawState();
 
+    QColor ColorConvert (Color color);
 
     State* _currentState;
     const State* _nextState;

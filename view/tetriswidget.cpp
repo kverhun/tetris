@@ -11,7 +11,7 @@ void TetrisWidget::paintEvent(QPaintEvent *)
 void TetrisWidget::PaintState(const State * state)
 {
     QPainter painter(this);
-    painter.fillRect(0,0,this->width(), this->height(), Qt::gray);
+    painter.fillRect(0,0,this->width(), this->height(), Qt::lightGray);
 
     if (_nextState == nullptr) return;
     this->DrawGrid(state->GetHeight(), state->GetWidth());
@@ -56,9 +56,31 @@ void TetrisWidget::DrawState()
         {
             if (_nextState->IsFilled(i,j))
             {
-                QRect rect = QRect(j*atom_w, i*atom_h, atom_w, atom_h);
-                painter.fillRect(rect, Qt::black);
+                QRect rect = QRect(j*atom_w+1, i*atom_h+1, atom_w-1, atom_h-1);
+                QColor color = ColorConvert(_nextState->GetColor(i,j));
+                painter.fillRect(rect, color);
             }
         }
 
+}
+
+QColor TetrisWidget::ColorConvert(Color color)
+{
+    QColor qcolor = Qt::black;
+    switch (color)
+    {
+    case red:
+        qcolor = Qt::red;
+        break;
+    case green:
+        qcolor = Qt::darkGreen;
+        break;
+    case blue:
+        qcolor = Qt::blue;
+        break;
+    case yellow:
+        qcolor = Qt::yellow;
+        break;
+    }
+    return qcolor;
 }

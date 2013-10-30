@@ -1,6 +1,8 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+const int color_num = 4;
+
 enum Color
 {
     none,
@@ -11,8 +13,7 @@ enum Color
 };
 
 
-// try typed enums
-
+const int figure_num = 6;
 enum FigurePrimitive
 {
     box,
