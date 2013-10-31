@@ -12,8 +12,8 @@ class Figure
 public:
     Figure(FigurePrimitive primitive, Color color);
     Figure (const Figure&);
-    bool IsFilled(int i, int j);
-    Color GetColor (int i, int j);
+    bool IsFilled(int i, int j) const ;
+    Color GetColor (int i, int j) const;
 
     void RotateCW();
     void RotateCCW();

@@ -21,6 +21,7 @@ private:
 
     State* _currentState;
     const State* _nextState;
+
 };
 
 #endif // TETRISWIDGET_H

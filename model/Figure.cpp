@@ -92,14 +92,14 @@ Figure::Figure(const Figure & figure)
     this->_matrix = figure._matrix;
 }
 
-bool Figure::IsFilled(int i, int j)
+bool Figure::IsFilled(int i, int j) const
 {
     if (i < 0 || i >= _height || j < 0 || j >= _width)
         return false;
     return _matrix[i][j].IsFilled();
 }
 
-Color Figure::GetColor(int i, int j)
+Color Figure::GetColor(int i, int j) const
 {
     if (i < 0 || i >= _height || j < 0 || j >= _width)
         return Color::none;

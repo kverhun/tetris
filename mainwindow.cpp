@@ -13,12 +13,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setFocusPolicy(Qt::StrongFocus);
     ui->setupUi(this);
+
     this->tw = new TetrisWidget();
     this->tw->setGeometry(10,10, 301, 601);
+
+    this->tnfw = new TetrisNextFigureWidget();
+    this->tnfw->setGeometry(340,20,98,98);
+
     setWindowTitle("Tetris");
     // adding TetrisWidget to Main Window's layout
+
     layout()->addWidget(this->tw);
+
     tw->repaint();
+
+    layout()->addWidget(tnfw);
 }
 
 MainWindow::~MainWindow()
@@ -61,7 +70,9 @@ void MainWindow::onStateUpdate(const State * st)
     this->tw->UpdateState(st);
     this->DisplayScore(st->GetScore());
     this->DisplayLevel(st->GetLevel());
+    this->tnfw->UpdateFigure(st->GetNextFigure());
     this->tw->repaint();
+    this->tnfw->repaint();
 }
 
 

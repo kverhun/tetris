@@ -24,6 +24,8 @@ public:
     int GetLevel () const {return _level;}
     int GetScore () const {return _score;}
 
+    const Figure* GetNextFigure() const {return _nextFigure;}
+
     ~State() {delete _figure; delete _field; delete _nextFigure;}
 private:
 

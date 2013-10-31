@@ -5,6 +5,7 @@
 
 #include "view/iview.h"
 #include "view/tetriswidget.h"
+#include "view/tetrisnextfigurewidget.h"
 #include "model/State.h"
 
 namespace Ui {
@@ -24,7 +25,7 @@ public:
 private:
     Ui::MainWindow *ui;
     TetrisWidget* tw;
-
+    TetrisNextFigureWidget* tnfw;
 protected:
     bool eventFilter(QObject *, QEvent *);
     void keyPressEvent(QKeyEvent *);
